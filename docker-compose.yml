@@ -1,0 +1,45 @@
+version: '2'
+services:
+
+  # The Application
+  app:
+    image: 1and1internet/ubuntu-16-apache-php-7.1
+    volumes:
+      - ./project:/var/www/dev
+      - ./apache_conf:/etc/apache2/sites-available/000-default.conf
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+    ports:
+        - "8080:8080"
+    links:
+        - "database:mysql"
+        - "ssdb:ssdb"
+
+  # The Database
+  database:
+    image: mysql:5.7
+    volumes:
+      - /var/db/dev1:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=homestead"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+
+  # The PHPMYADMIN web interface
+  phpmyadmin:
+    image: nazarpc/phpmyadmin
+    ports:
+        - "8083:80"
+    links:
+        - "database:mysql"
+
+  #SSDB
+  ssdb:
+    image: wendal/ssdb
+    volumes:
+     - /var/lib/ssdb1:/var/lib/ssdb
+
+volumes:
+  dbdata:

@@ -1,0 +1,14 @@
+Listen 8080
+<VirtualHost *:8080>
+        ServerName localhost
+        ServerAdmin side112358@gmail.com
+        DocumentRoot /var/www/dev/public/
+        <Directory /var/www/dev/public/>
+                #Options Indexes FollowSymLinks
+                AllowOverride all
+                Order Allow,deny
+                Allow from all
+                #Require all granted
+        </Directory>
+</VirtualHost>
+
