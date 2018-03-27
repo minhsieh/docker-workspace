@@ -3,4 +3,4 @@ db/*
 redis/*
 project/*
 codiad/config.php
-
+codiad/data/*
