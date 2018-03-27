@@ -1,9 +1,23 @@
 Listen 8080
+Listen 8081
 <VirtualHost *:8080>
         ServerName localhost
         ServerAdmin side112358@gmail.com
         DocumentRoot /var/www/dev/public/
         <Directory /var/www/dev/public/>
+                #Options Indexes FollowSymLinks
+                AllowOverride all
+                Order Allow,deny
+                Allow from all
+                #Require all granted
+        </Directory>
+</VirtualHost>
+
+<VirtualHost *:8081>
+	ServerName localhost
+        ServerAdmin side112358@gmail.com
+        DocumentRoot /var/www/codiad/
+        <Directory /var/www/codiad/>
                 #Options Indexes FollowSymLinks
                 AllowOverride all
                 Order Allow,deny

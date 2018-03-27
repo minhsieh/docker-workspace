@@ -6,6 +6,7 @@ services:
     image: 1and1internet/ubuntu-16-apache-php-7.1
     volumes:
       - ./project:/var/www/dev
+      - ./codiad:/var/www/codiad
       - ./apache_conf:/etc/apache2/sites-available/000-default.conf
     environment:
       - "DB_PORT=3306"
@@ -22,8 +23,9 @@ services:
   database:
     image: mysql:5.7
     volumes:
-      - /var/db/dev1:/var/lib/mysql
+      - ./db/dev1:/var/lib/mysql:rw
     environment:
+      - "MYSQL_ROOT_HOST=%"
       - "MYSQL_DATABASE=homestead"
       - "MYSQL_USER=homestead"
       - "MYSQL_PASSWORD=secret"
@@ -41,13 +43,13 @@ services:
   ssdb:
     image: wendal/ssdb
     volumes:
-     - /var/lib/ssdb1:/var/lib/ssdb
+     - ./ssdb:/var/lib/ssdb:rw
 
   #Redis
   redis:
     image: redis
     volumes:
-     - /var/db/redis:/data
+     - ./redis:/data:rw
 
 
 
