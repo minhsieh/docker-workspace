@@ -1,0 +1,6 @@
+ssdb/*
+db/*
+redis/*
+project/*
+codiad/config.php
+
