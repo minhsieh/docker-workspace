@@ -12,9 +12,11 @@ services:
       - "DB_HOST=database"
     ports:
         - "8080:8080"
+        - "8081:8081"
     links:
         - "database:mysql"
         - "ssdb:ssdb"
+        - "redis:redis"
 
   # The Database
   database:
@@ -31,7 +33,7 @@ services:
   phpmyadmin:
     image: nazarpc/phpmyadmin
     ports:
-        - "8083:80"
+        - "8082:80"
     links:
         - "database:mysql"
 
@@ -40,6 +42,14 @@ services:
     image: wendal/ssdb
     volumes:
      - /var/lib/ssdb1:/var/lib/ssdb
+
+  #Redis
+  redis:
+    image: redis
+    volumes:
+     - /var/db/redis:/data
+
+
 
 volumes:
   dbdata:
